@@ -3,8 +3,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
-import 'package:payment_teacher/salaire/AjouterSalaire.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -34,11 +34,10 @@ class _LoadingPageState extends State<LoadingPage> {
     // ignore: non_constant_identifier_names
     final ScreenH = MediaQuery.of(context).size.height;
     final ScreenW = MediaQuery.of(context).size.width;
-    return SizedBox(
-      height: ScreenH,
-      width: ScreenW,
-      child: Image.network(
-          'https://png.pngtree.com/element_our/png_detail/20181227/online-payment-icon-designed-creatively-and-simple-for-freshness-for-application-png_293646.jpg'),
-    );
+    return Scaffold(
+        body: Center(
+      child: Image.asset(
+          'assets/images/logo.png'),
+    ));
   }
 }
