@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:payment_teacher/enseignant/ListEnseignant.dart';
+import 'package:payment_teacher/salaire/ListSalaire.dart';
+
 
 // ignore: must_be_immutable, camel_case_types
 class UpdateSalaire extends StatefulWidget {
@@ -93,7 +94,7 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
                   Navigator.pushAndRemoveUntil(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => const List_Enseignant()),
+                        builder: (context) => List_Salaire()),
                     (Route<dynamic> route) => false,
                   );
                 },
