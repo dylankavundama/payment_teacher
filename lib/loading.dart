@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payment_teacher/enseignant/ListEnseignant.dart';
+import 'package:payment_teacher/Navigation.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _LoadingPageState extends State<LoadingPage> {
   void NextPage() {
     Navigator.pushAndRemoveUntil(
       context,
-      CupertinoPageRoute(builder: (context) => List_Enseignant()),
+      CupertinoPageRoute(builder: (context) => NavBarPage()),
       (Route<dynamic> route) => false,
     );
   }
@@ -36,8 +36,7 @@ class _LoadingPageState extends State<LoadingPage> {
     final ScreenW = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Center(
-      child: Image.asset(
-          'assets/images/logo.png'),
+      child: Image.asset('assets/images/logo.png'),
     ));
   }
 }
