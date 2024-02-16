@@ -152,7 +152,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                       const SizedBox(
                                         width: 6,
                                       ),
-                                      Text(userdata[index]["montant"]),
+                                      Text(userdata[index]["montant"]),Text('\$'),
                                       SizedBox(
                                         width: ss * 0.22,
                                         child: GestureDetector(

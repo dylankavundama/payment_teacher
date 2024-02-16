@@ -23,3 +23,39 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            // Add SliverAppBar properties as needed
+            title: Text('My List'),
+            floating: true,
+            // Add more SliverAppBar properties as needed
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                // Replace the return statement with your ListView.builder
+                return ListView.builder(
+                  itemCount: 10, // Example itemCount
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text('Item $index'),
+                    );
+                  },
+                );
+              },
+              childCount: 1, // You only have one ListView.builder in this example
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
+import 'package:payment_teacher/groupeTP.dart';
 import 'package:payment_teacher/salaire/ListSalaire.dart';
 
 class NavBarPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _NavBarPageState extends State<NavBarPage> {
   int currentindex = 0;
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;
-  List<Widget> screen = [const List_Salaire(), List_Enseignant()];
+  List<Widget> screen = [List_Enseignant(), const List_Salaire(), ListGroupe()];
   void _listbotton(int index) {
     currentindex = index;
   }
@@ -53,19 +54,19 @@ class _NavBarPageState extends State<NavBarPage> {
         },
         destinations: const <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.home_max),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.person),
+            selectedIcon: Icon(Icons.person_3),
+            label: 'Enseignant',
           ),
           NavigationDestination(
-            icon: Icon(Icons.info_outlined),
+            icon: Icon(Icons.comment_bank),
             selectedIcon: Icon(Icons.info),
-            label: 'Info',
+            label: 'Salaire',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.settings_accessibility),
-            icon: Icon(Icons.settings),
-            label: 'Setting',
+            selectedIcon: Icon(Icons.list_alt),
+            icon: Icon(Icons.list),
+            label: 'Groupe',
           ),
         ],
       ),
