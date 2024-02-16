@@ -14,6 +14,7 @@ class List_Enseignant extends StatefulWidget {
   State<List_Enseignant> createState() => _List_EnseignantState();
 }
 
+// ignore: camel_case_types
 class _List_EnseignantState extends State<List_Enseignant> {
   List userdata = [];
   Future<void> delrecord(String id) async {
@@ -22,10 +23,10 @@ class _List_EnseignantState extends State<List_Enseignant> {
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
-        print("record deleted");
+        debugPrint("record deleted");
         getrecord();
       } else {
-        print("Erreur de suppression");
+        debugPrint("Erreur de suppression");
         getrecord();
       }
     } catch (e) {
@@ -106,10 +107,10 @@ class _List_EnseignantState extends State<List_Enseignant> {
                             Container(
                               height: 60,
                               width: 60,
-                              child: Icon(LineIcons.userCircle, size: 35),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.grey)),
+                              child: const Icon(LineIcons.userCircle, size: 35),
                             ),
                             const SizedBox(
                               width: 15,
@@ -120,9 +121,6 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  // Expanded(
-                                  //   child:
-
                                   Row(
                                     children: [
                                       Text(
@@ -130,13 +128,11 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                       ),
                                     ],
                                   ),
-
                                   Text(
                                     userdata[index]["dateN"],
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w200),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w200),
                                   ),
-                                  // ),
                                   const SizedBox(height: 5),
                                   Row(
                                     children: [
