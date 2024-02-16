@@ -1,25 +1,24 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:payment_teacher/enseignant/Ajouter.dart';
-
 import 'package:line_icons/line_icons.dart';
-import 'package:payment_teacher/enseignant/UpdateEnseignant.dart';
+import 'package:payment_teacher/salaire/AjouterSalaire.dart';
+import 'package:payment_teacher/salaire/UpdateSalaire.dart';
 
 // ignore: camel_case_types
-class List_Enseignant extends StatefulWidget {
-  const List_Enseignant({super.key});
+class List_Salaire extends StatefulWidget {
+  const List_Salaire({super.key});
   @override
-  State<List_Enseignant> createState() => _List_EnseignantState();
+  State<List_Salaire> createState() => _List_SalaireState();
 }
 
 // ignore: camel_case_types
-class _List_EnseignantState extends State<List_Enseignant> {
+class _List_SalaireState extends State<List_Salaire> {
   List userdata = [];
   Future<void> delrecord(String id) async {
     try {
-      var url = "http://192.168.1.66/payment_teacher/delete-enseignant.php";
+      var url =
+          "http://192.168.1.66/payment_teacher/salaire/delete-Salaire.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -35,7 +34,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.66/payment_teacher/read-enseignant.php";
+    var url = "http://192.168.1.66/payment_teacher/salaire/read-salaire.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -58,7 +57,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
     final ss = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Enseignant"),
+        title: const Text("Salaire"),
         centerTitle: true,
         backgroundColor: Colors.blue[900],
         actions: [
@@ -78,13 +77,15 @@ class _List_EnseignantState extends State<List_Enseignant> {
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Update_Enseignant(
-                            userdata[index]["nom"],
-                            userdata[index]["matricule"],
-                            userdata[index]["dateN"],
-                            userdata[index]["id"])));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UpdateSalaire(
+                        userdata[index]["nom"],
+                        userdata[index]["montant"],
+                        userdata[index]["dateP"],
+                        userdata[index]["id"]),
+                  ),
+                );
               },
               child: Container(
                 height: 100,
@@ -129,7 +130,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                     ],
                                   ),
                                   Text(
-                                    userdata[index]["dateN"],
+                                    userdata[index]["dateP"],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w200),
                                   ),
@@ -142,7 +143,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                               color: Colors.blue, size: 15),
                                           SizedBox(width: 5),
                                           Text(
-                                            "Matricule : ",
+                                            "montant : ",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w200),
                                           ),
@@ -151,7 +152,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                       const SizedBox(
                                         width: 6,
                                       ),
-                                      Text(userdata[index]["matricule"]),
+                                      Text(userdata[index]["montant"]),
                                       SizedBox(
                                         width: ss * 0.22,
                                         child: GestureDetector(
@@ -182,7 +183,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
               context: context,
               builder: (context) {
                 return const Center(
-                  child: AddEnseignant(),
+                  child: AddSalaire(),
                 );
               }).then((value) {});
         },

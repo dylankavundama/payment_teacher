@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:payment_teacher/enseignant/ListEnseignant.dart';
+import 'package:payment_teacher/salaire/ListSalaire.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.blue[900],
         appBarTheme: AppBarTheme(backgroundColor: Colors.blue[900]),
       ),
-      home: List_Enseignant(),
+      home: const List_Salaire(),
     );
   }
 }

@@ -5,32 +5,32 @@ import 'package:http/http.dart' as http;
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
 // ignore: must_be_immutable, camel_case_types
-class Update_Enseignant extends StatefulWidget {
+class UpdateSalaire extends StatefulWidget {
   String id;
   String nom;
-  String matricule;
-  String dateN;
-  Update_Enseignant(this.nom, this.matricule, this.dateN, this.id, {super.key});
+  String montant;
+  String dateP;
+  UpdateSalaire(this.nom, this.montant, this.dateP, this.id, {super.key});
 
   @override
-  State<Update_Enseignant> createState() => _Update_EnseignantState();
+  State<UpdateSalaire> createState() => _UpdateSalaireState();
 }
 
 // ignore: camel_case_types
-class _Update_EnseignantState extends State<Update_Enseignant> {
+class _UpdateSalaireState extends State<UpdateSalaire> {
   String mat = "";
   TextEditingController txtnom = TextEditingController();
-  TextEditingController matricule = TextEditingController();
-  TextEditingController dateN = TextEditingController();
+  TextEditingController montant = TextEditingController();
+  TextEditingController dateP = TextEditingController();
 
   Future<void> update() async {
     try {
-      var url = "http://192.168.1.66/payment_teacher/update.php";
+      var url = "http://192.168.1.66/payment_teacher/salaire/update_salaire.php";
 
       var res = await http.post(Uri.parse(url), body: {
         "nom": txtnom.text,
-        "matricule": matricule.text,
-        "dateN": dateN.text,
+        "montant": montant.text,
+        "dateP": dateP.text,
         "id": widget.id
       });
       debugPrint(widget.id);
@@ -48,8 +48,8 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
 
   @override
   void initState() {
-    matricule.text = widget.matricule;
-    dateN.text = widget.dateN;
+    montant.text = widget.montant;
+    dateP.text = widget.dateP;
     txtnom.text = widget.nom;
     mat = widget.id;
     super.initState();
@@ -71,15 +71,15 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
               decoration: const InputDecoration(hintText: "", labelText: "Nom"),
             ),
             TextField(
-              controller: matricule,
+              controller: montant,
               decoration:
-                  const InputDecoration(hintText: "", labelText: "Matricule"),
+                  const InputDecoration(hintText: "", labelText: "montant"),
             ),
             TextField(
               onTap: () => _selectDate(context),
-              controller: dateN,
+              controller: dateP,
               decoration: const InputDecoration(
-                  hintText: "Votre dateN", labelText: "dateN"),
+                  hintText: "Votre dateP", labelText: "dateP"),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16),
@@ -115,7 +115,7 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        dateN.text = picked.toString().substring(0, 10);
+        dateP.text = picked.toString().substring(0, 10);
       });
     }
   }
