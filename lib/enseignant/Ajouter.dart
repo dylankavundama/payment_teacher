@@ -2,15 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:line_icons/line_icons.dart';
 import 'dart:core';
-import 'package:intl/intl.dart';
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
 class AddEnseignant extends StatefulWidget {
   const AddEnseignant({super.key});
-
   @override
   State<AddEnseignant> createState() => _AddEnseignantState();
 }
@@ -22,7 +19,6 @@ class _AddEnseignantState extends State<AddEnseignant> {
   @override
   void initState() {
     super.initState();
-    // _init();
   }
 
   bool _isNumeric(String value) {
@@ -70,11 +66,11 @@ class _AddEnseignantState extends State<AddEnseignant> {
           elevation: 2.0,
           borderRadius: BorderRadius.circular(4.0),
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(LineIcons.userCircle, color: Colors.blue, size: 80),
+                const Icon(LineIcons.userCircle, color: Colors.blue, size: 80),
                 textField(
                   textHint: "Nom ",
                   controller: nom,
@@ -122,12 +118,10 @@ class _AddEnseignantState extends State<AddEnseignant> {
                         _isLoading = true;
                       });
                       savadatas(Enseignant(
-                        //   code: matricule.text.trim(),
                         nom: nom.text.trim(),
                         matricule: matricule.text.trim(),
                         dateN: dateN.text.trim(),
                       )).then((value) {
-                        // Navigator.of(context).pop('saved');
                         Navigator.pushAndRemoveUntil(
                           context,
                           CupertinoPageRoute(
@@ -208,23 +202,24 @@ Widget textField(
         ),
         child: Center(
           child: TextFormField(
-              readOnly: readOnly != true ? false : true,
-              onTap: func,
-              keyboardType: isNumber == null
-                  ? TextInputType.text
-                  : const TextInputType.numberWithOptions(),
-              enabled: enabled ?? true,
-              controller: controller,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Icon(icon),
-                suffixIcon: isName != null
-                    ? IconButton(
-                        icon: Icon(suffixIcon),
-                        onPressed: onPressed,
-                      )
-                    : null,
-              )),
+            readOnly: readOnly != true ? false : true,
+            onTap: func,
+            keyboardType: isNumber == null
+                ? TextInputType.text
+                : const TextInputType.numberWithOptions(),
+            enabled: enabled ?? true,
+            controller: controller,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              prefixIcon: Icon(icon),
+              suffixIcon: isName != null
+                  ? IconButton(
+                      icon: Icon(suffixIcon),
+                      onPressed: onPressed,
+                    )
+                  : null,
+            ),
+          ),
         ),
       )
     ],
