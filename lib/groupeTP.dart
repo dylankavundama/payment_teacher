@@ -26,7 +26,7 @@ class _ListGroupeState extends State<ListGroupe> {
         title: Text('${nom}'),
         subtitle: Text('${promo}'),
         trailing: Text('${sexe}'),
-        leading: Icon(
+        leading: const Icon(
           size: 50,
           LineIcons.userCircle,
         ));

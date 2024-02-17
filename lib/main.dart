@@ -1,61 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:payment_teacher/Homepage.dart';
+import 'package:payment_teacher/MyLogin.dart';
+import 'package:payment_teacher/Rapport.dart';
+import 'package:payment_teacher/enseignant/ListEnseignant.dart';
+import 'package:payment_teacher/groupeTP.dart';
 import 'package:payment_teacher/loading.dart';
-
+import 'package:payment_teacher/salaire/ListSalaire.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  isCheckIfAlreadyOpen().then((value) {
+    runApp(MyApp(
+      isOpened: value,
+    ));
+  });
+}
+
+Future<bool> isCheckIfAlreadyOpen() async {
+  final prefs = await SharedPreferences.getInstance();
+  bool result = prefs.getBool('opened') ?? false;
+  if (!result) {
+    prefs.setBool('opened', true);
+  }
+  return result;
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isOpened;
+  const MyApp({Key? key, required this.isOpened}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      color: Colors.blue[900],
+      color: Color.fromRGBO(33, 150, 243, 1),
       theme: ThemeData(
-        primaryColor: Colors.blue[900],
-        backgroundColor: Colors.blue[900],
-        appBarTheme: AppBarTheme(backgroundColor: Colors.blue[900]),
+        primaryColor: Color.fromRGBO(33, 150, 243, 1),
+        backgroundColor: Color.fromRGBO(33, 150, 243, 1),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color.fromRGBO(33, 150, 243, 1),
+        ),
       ),
-      home:  const LoadingPage(),
-    );
-  }
-}
-
-
-
-class MyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            // Add SliverAppBar properties as needed
-            title: Text('My List'),
-            floating: true,
-            // Add more SliverAppBar properties as needed
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                // Replace the return statement with your ListView.builder
-                return ListView.builder(
-                  itemCount: 10, // Example itemCount
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text('Item $index'),
-                    );
-                  },
-                );
-              },
-              childCount: 1, // You only have one ListView.builder in this example
-            ),
-          ),
-        ],
-      ),
+      home: isOpened ? LoadingPage() : const MyLogin(),
+      routes: {
+        // '/splash': (context) => SplashScreen(),
+        // '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomePage(),
+        // '/category': (context) => new CategorySearch(
+        //  category: ModalRoute.of(context).settings.arguments),
+        '/List_Enseignant': (context) => const List_Enseignant(),
+        '/List_Salaire': (context) => const List_Salaire(),
+        '/Rapport': (context) => const Rapport(),
+        '/ListGroupe': (context) => const ListGroupe(),
+        // '/client': (context) => const ClientList(),
+        // '/vente/main': (context) => const DetailVente(),
+        // '/vente/client': (context) => const MainVente(),
+        // '/vente/list': (context) => const VenteList(),
+        // '/settings': (context) => const SettingMainScreen(),
+        // '/depense/add': (context) => const AddDepenseForm(),
+        // '/depense/list': (context) => const DepenseListScreen(),
+        // '/facture': (context) => new FactureScreen(),
+      },
     );
   }
 }

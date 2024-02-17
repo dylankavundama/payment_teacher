@@ -60,7 +60,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
       appBar: AppBar(
         title: const Text("Enseignant"),
         centerTitle: true,
-        backgroundColor: Colors.blue[900],
+        backgroundColor:Color.fromRGBO(33, 150, 243, 1),
         actions: [
           IconButton(
             onPressed: () {
@@ -186,7 +186,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
                 );
               }).then((value) {});
         },
-        backgroundColor: Colors.blue[900],
+        backgroundColor:Color.fromRGBO(33, 150, 243, 1),
         child: const Icon(Icons.add),
       ),
     );

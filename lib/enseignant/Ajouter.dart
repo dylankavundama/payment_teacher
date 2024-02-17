@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
+import 'package:payment_teacher/Homepage.dart';
 import 'dart:core';
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
@@ -125,7 +126,7 @@ class _AddEnseignantState extends State<AddEnseignant> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           CupertinoPageRoute(
-                              builder: (context) => const List_Enseignant()),
+                              builder: (context) => const HomePage()),
                           (Route<dynamic> route) => false,
                         );
                       }).whenComplete(() {

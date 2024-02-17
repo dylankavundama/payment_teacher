@@ -59,15 +59,8 @@ class _List_SalaireState extends State<List_Salaire> {
       appBar: AppBar(
         title: const Text("Salaire"),
         centerTitle: true,
-        backgroundColor: Colors.blue[900],
-        actions: [
-          IconButton(
-            onPressed: () {
-              //     showSearch(context: context,delegate: ClientSearchDelegate(),);
-            },
-            icon: const Icon(Icons.search),
-          )
-        ],
+        backgroundColor:Color.fromRGBO(33, 150, 243, 1),
+
       ),
       body: ListView.builder(
         itemCount: userdata.length,
@@ -187,7 +180,7 @@ class _List_SalaireState extends State<List_Salaire> {
                 );
               }).then((value) {});
         },
-        backgroundColor: Colors.blue[900],
+        backgroundColor:Color.fromRGBO(33, 150, 243, 1),
         child: const Icon(Icons.add),
       ),
     );
