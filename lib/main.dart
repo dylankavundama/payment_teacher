@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      color: Color.fromRGBO(33, 150, 243, 1),
+      color: const Color.fromARGB(199, 3, 204, 244),
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(33, 150, 243, 1),
-        backgroundColor: Color.fromRGBO(33, 150, 243, 1),
+        primaryColor: Color.fromARGB(199, 3, 204, 244),
+        backgroundColor: Color.fromARGB(199, 3, 204, 244),
         appBarTheme: AppBarTheme(
-          backgroundColor: Color.fromRGBO(33, 150, 243, 1),
+          backgroundColor: Color.fromARGB(199, 3, 204, 244),
         ),
       ),
       home: isOpened ? LoadingPage() : const MyLogin(),

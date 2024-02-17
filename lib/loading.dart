@@ -37,9 +37,9 @@ class _LoadingPageState extends State<LoadingPage> {
     final ScreenH = MediaQuery.of(context).size.height;
     final ScreenW = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor:  Color.fromARGB(199, 3, 204, 244),
         body: Center(
-      child: Image.asset(
-          'assets/images/logo.png'),
+      child: Image.asset('assets/images/logo.png'),
     ));
   }
 }

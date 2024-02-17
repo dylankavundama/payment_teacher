@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:payment_teacher/MyLogin.dart';
 import 'package:payment_teacher/enseignant/Ajouter.dart';
 import 'package:payment_teacher/enseignant/UpdateEnseignant.dart';
 
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: MediaQuery.of(context).padding.top,
               child: Container(
-                color:Color.fromRGBO(33, 150, 243, 1),
+                color:Color.fromARGB(199, 3, 204, 244),
               ),
             ),
             Stack(
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       height: 300,
                       width: double.infinity,
-                      color:Color.fromRGBO(33, 150, 243, 1),
+                      color:Color.fromARGB(199, 3, 204, 244),
                     ),
                   ),
                 ),
@@ -96,9 +97,9 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text("Date"),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                       
                               ]),
                           const SizedBox(height: 5),
                           Row(
@@ -148,7 +149,17 @@ class _HomePageState extends State<HomePage> {
                                 width: 1,
                                 color: Colors.grey,
                               ),
-                              const Text('bloc'),
+                                  IconButton(
+              icon: Icon(Icons.arrow_circle_right_outlined,size: 33,),
+              onPressed: () {
+                // Navigate back to the login screen
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyLogin(),
+                    ));
+              },
+            ),
                             ],
                           ),
                         ],
@@ -228,9 +239,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
+ 
             ListView.builder(
             physics: BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -360,7 +369,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }).then((value) {});
         },
-        backgroundColor:Color.fromRGBO(33, 150, 243, 1),
+        backgroundColor:Color.fromARGB(199, 3, 204, 244),
         child: const Icon(Icons.add),
       ),
     );
