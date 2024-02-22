@@ -51,7 +51,7 @@ class _LoadingPageState extends State<LoadingPage> {
         
                Text(
                 "Now",
-                style: TextStyle(color: Colors.grey, fontSize: 30),
+                style: TextStyle(color: Colors.black54, fontSize: 30),
               ),
             ],
           ),
