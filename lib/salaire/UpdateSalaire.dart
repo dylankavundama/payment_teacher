@@ -88,7 +88,7 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
                 minWidth: double.maxFinite,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
-                color: Colors.blue[800],
+                color: const Color.fromARGB(199, 3, 204, 244),
                 onPressed: () {
                   update();
                   Navigator.pushAndRemoveUntil(

@@ -45,6 +45,7 @@ dependencies:
   flutter_svg: ^1.0.3
   flutter_svg_provider: ^1.0.3
   shared_preferences: ^2.0.13
+  printing: ^5.9.0
 
 dev_dependencies:
   flutter_test:
