@@ -37,9 +37,24 @@ class _LoadingPageState extends State<LoadingPage> {
     final ScreenH = MediaQuery.of(context).size.height;
     final ScreenW = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor:  Color.fromARGB(199, 3, 204, 244),
+        backgroundColor: const Color.fromARGB(199, 3, 204, 244),
         body: Center(
-      child: Image.asset('assets/images/logo.png'),
-    ));
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Text(
+                "Pay ",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
+        
+               Text(
+                "Now",
+                style: TextStyle(color: Colors.grey, fontSize: 30),
+              ),
+            ],
+          ),
+        ));
   }
 }
