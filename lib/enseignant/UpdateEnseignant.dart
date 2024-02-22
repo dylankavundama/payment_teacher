@@ -87,7 +87,7 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
                 minWidth: double.maxFinite,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
-                color: Colors.blue[800],
+                color: const Color.fromARGB(199, 3, 204, 244),
                 onPressed: () {
                   update();
                   Navigator.pushAndRemoveUntil(
