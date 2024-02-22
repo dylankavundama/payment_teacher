@@ -34,8 +34,6 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     // ignore: non_constant_identifier_names
-    final ScreenH = MediaQuery.of(context).size.height;
-    final ScreenW = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: const Color.fromARGB(199, 3, 204, 244),
         body: Center(
