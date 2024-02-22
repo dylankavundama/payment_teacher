@@ -54,7 +54,10 @@ class _LoadingPageState extends State<LoadingPage> {
                 style: TextStyle(color: Colors.black54, fontSize: 35,fontWeight: FontWeight.bold),
               ),
 
-              Icon(Icons.school)
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.school,size:30),
+              )
             ],
           ),
         ));
