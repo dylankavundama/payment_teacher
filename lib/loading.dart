@@ -46,13 +46,15 @@ class _LoadingPageState extends State<LoadingPage> {
             children: const [
               Text(
                 "Pay ",
-                style: TextStyle(color: Colors.white, fontSize: 30),
+                style: TextStyle(color: Colors.white, fontSize: 35,fontWeight: FontWeight.bold),
               ),
         
                Text(
                 "Now",
-                style: TextStyle(color: Colors.black54, fontSize: 30),
+                style: TextStyle(color: Colors.black54, fontSize: 35,fontWeight: FontWeight.bold),
               ),
+
+              Icon(Icons.school)
             ],
           ),
         ));
