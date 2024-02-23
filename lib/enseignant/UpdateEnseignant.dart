@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:payment_teacher/Homepage.dart';
 import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
 // ignore: must_be_immutable, camel_case_types
@@ -25,7 +26,7 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
 
   Future<void> update() async {
     try {
-      var url = "http://192.168.1.66/payment_teacher/update.php";
+      var url = "http://192.168.1.190/payment_teacher/update.php";
 
       var res = await http.post(Uri.parse(url), body: {
         "nom": txtnom.text,
@@ -90,12 +91,7 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
                 color: const Color.fromARGB(199, 3, 204, 244),
                 onPressed: () {
                   update();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => const List_Enseignant()),
-                    (Route<dynamic> route) => false,
-                  );
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: const Text("Confirmer"),
               ),

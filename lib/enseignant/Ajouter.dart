@@ -41,7 +41,7 @@ class _AddEnseignantState extends State<AddEnseignant> {
 
   Future<void> savadatas(Enseignant enseignant) async {
     try {
-      var url = "http://192.168.1.66/payment_teacher/add-enseignant.php";
+      var url = "http://192.168.1.190/payment_teacher/add-enseignant.php";
       Uri ulr = Uri.parse(url);
 
       await http.post(ulr, body: {

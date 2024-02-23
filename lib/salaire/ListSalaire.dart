@@ -18,7 +18,7 @@ class _List_SalaireState extends State<List_Salaire> {
   Future<void> delrecord(String id) async {
     try {
       var url =
-          "http://192.168.1.66/payment_teacher/salaire/delete-Salaire.php";
+          "http://192.168.1.190/payment_teacher/salaire/delete-Salaire.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -34,7 +34,7 @@ class _List_SalaireState extends State<List_Salaire> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.66/payment_teacher/salaire/read-salaire.php";
+    var url = "http://192.168.1.190/payment_teacher/readvie.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -59,8 +59,7 @@ class _List_SalaireState extends State<List_Salaire> {
       appBar: AppBar(
         title: const Text("Salaire"),
         centerTitle: true,
-        backgroundColor:Color.fromARGB(199, 3, 204, 244),
-
+        backgroundColor: Color.fromARGB(199, 3, 204, 244),
       ),
       body: ListView.builder(
         itemCount: userdata.length,
@@ -118,7 +117,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                   Row(
                                     children: [
                                       Text(
-                                        userdata[index]["nom"],
+                                        userdata[index]["name"],
                                       ),
                                     ],
                                   ),
@@ -145,7 +144,8 @@ class _List_SalaireState extends State<List_Salaire> {
                                       const SizedBox(
                                         width: 6,
                                       ),
-                                      Text(userdata[index]["montant"]),Text('\$'),
+                                      Text(userdata[index]["montant"]),
+                                      Text('\$'),
                                       SizedBox(
                                         width: ss * 0.22,
                                         child: GestureDetector(
@@ -180,7 +180,7 @@ class _List_SalaireState extends State<List_Salaire> {
                 );
               }).then((value) {});
         },
-        backgroundColor:Color.fromARGB(199, 3, 204, 244),
+        backgroundColor: Color.fromARGB(199, 3, 204, 244),
         child: const Icon(Icons.add),
       ),
     );

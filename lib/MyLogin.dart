@@ -89,13 +89,15 @@ class _MyLoginState extends State<MyLogin> {
                                       final username = usernameController.text;
                                       final password = passwordController.text;
 
-                                      if (username == 'a' && password == 'a') {
+                                      if (username == 'admin' &&
+                                          password == '1234') {
                                         Navigator.pushAndRemoveUntil(
                                           context,
                                           CupertinoPageRoute(
-                                            builder: (context) => HomePage(
-                                                //   username: username,
-                                                ),
+                                            builder: (context) =>
+                                                const HomePage(
+                                                    //   username: username,
+                                                    ),
                                           ),
                                           (Route<dynamic> route) => false,
                                         );

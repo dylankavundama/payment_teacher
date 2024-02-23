@@ -12,19 +12,41 @@ class _ListGroupeState extends State<ListGroupe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(children: [Membre(nom: 'dyyuyyy', promo: 'G1', sexe: 'M')]),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('les membres du groupe'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Membre(nom: 'Munanga Bonso lievin', sexe: 'M'),
+          Membre(nom: 'Mbusa keukeu David', sexe: 'M'),
+          Membre(nom: 'Wahabu djuma navid', sexe: 'M'),
+          Membre(nom: 'Bakengane kabene josue', sexe: 'M'),
+          Membre(nom: 'Kabuo lusenge ruth', sexe: 'F'),
+          Membre(nom: 'Muhirwa ruboneka David', sexe: 'M'),
+          Membre(nom: 'Sadiki sebujangwe lucien', sexe: 'M'),
+          Membre(nom: 'Nyandwi Ndiseka bonardo', sexe: 'M'),
+          Membre(nom: 'Bisimwa buranga malick', sexe: 'M'),
+          Membre(nom: 'Mwamba elikya josue', sexe: 'M'),
+          Membre(nom: 'Kalamo mushomo junior', sexe: 'M'),
+          Membre(nom: 'Musimwa baganda josephine', sexe: 'F'),
+          Membre(nom: 'Rhusimana Kalinda divine', sexe: 'F'),
+          Membre(nom: 'Sarah murisho judith', sexe: 'F'),
+          Membre(nom: 'Eleka Nsele jeannette', sexe: 'F'),
+          Membre(nom: 'Tumaini sindayi samuel', sexe: 'M'),
+          Membre(nom: 'Kavira sikiminywa gloria', sexe: 'F'),
+        ]),
+      ),
     );
   }
 
   Widget Membre({
     String? nom,
     String? sexe,
-    String? promo,
   }) {
     return ListTile(
         title: Text('${nom}'),
-        subtitle: Text('${promo}'),
+        subtitle: Text(''),
         trailing: Text('${sexe}'),
         leading: const Icon(
           size: 50,
