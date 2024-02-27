@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   List userdata = [];
   Future<void> delrecord(String id) async {
     try {
-      var url = "http://192.168.1.190/payment_teacher/delete-enseignant.php";
+      var url = "https://royalrisingplus.com/payment_teacher/delete-enseignant.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/read-enseignant.php";
+    var url = "https://royalrisingplus.com/payment_teacher/read-enseignant.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {

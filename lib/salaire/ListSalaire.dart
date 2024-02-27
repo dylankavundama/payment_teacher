@@ -18,7 +18,7 @@ class _List_SalaireState extends State<List_Salaire> {
   Future<void> delrecord(String id) async {
     try {
       var url =
-          "http://192.168.1.190/payment_teacher/salaire/delete-Salaire.php";
+          "https://royalrisingplus.com/payment_teacher/salaire/delete-Salaire.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -34,7 +34,7 @@ class _List_SalaireState extends State<List_Salaire> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/readvie.php";
+    var url = "https://royalrisingplus.com/payment_teacher/readvie.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {

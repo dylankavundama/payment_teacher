@@ -26,7 +26,7 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
 
   Future<void> update() async {
     try {
-      var url = "http://192.168.1.190/payment_teacher/salaire/update_salaire.php";
+      var url = "https://royalrisingplus.com/payment_teacher/salaire/update_salaire.php";
 
       var res = await http.post(Uri.parse(url), body: {
         "nom": txtnom.text,

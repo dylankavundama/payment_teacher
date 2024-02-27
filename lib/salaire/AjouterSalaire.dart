@@ -47,7 +47,7 @@ class _AddSalaireState extends State<AddSalaire> {
 
   List dataens = [];
   Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/read-enseignant.php";
+    var url = "https://royalrisingplus.com/payment_teacher/read-enseignant.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -60,7 +60,7 @@ class _AddSalaireState extends State<AddSalaire> {
 
   Future<void> savadatas(Salaire Salaire) async {
     try {
-      var url = "http://192.168.1.190/payment_teacher/salaire/add-salaire.php";
+      var url = "https://royalrisingplus.com/payment_teacher/salaire/add-salaire.php";
       Uri ulr = Uri.parse(url);
 
       await http.post(ulr,

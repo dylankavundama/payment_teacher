@@ -26,7 +26,7 @@ class _Update_EnseignantState extends State<Update_Enseignant> {
 
   Future<void> update() async {
     try {
-      var url = "http://192.168.1.190/payment_teacher/update.php";
+      var url = "https://royalrisingplus.com/payment_teacher/update.php";
 
       var res = await http.post(Uri.parse(url), body: {
         "nom": txtnom.text,
