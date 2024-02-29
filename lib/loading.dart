@@ -26,7 +26,7 @@ class _LoadingPageState extends State<LoadingPage> {
   void NextPage() {
     Navigator.pushAndRemoveUntil(
       context,
-      CupertinoPageRoute(builder: (context) => MyLogin()),
+      CupertinoPageRoute(builder: (context) => HomePage()),
       (Route<dynamic> route) => false,
     );
   }
@@ -39,22 +39,25 @@ class _LoadingPageState extends State<LoadingPage> {
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               Text(
                 "Pay ",
-                style: TextStyle(color: Colors.white, fontSize: 35,fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold),
               ),
-        
-               Text(
+              Text(
                 "Now",
-                style: TextStyle(color: Colors.black54, fontSize: 35,fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold),
               ),
-
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.school,size:30),
+                child: Icon(Icons.school, size: 30),
               )
             ],
           ),
