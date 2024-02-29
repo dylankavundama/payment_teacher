@@ -34,7 +34,7 @@ class _ListGroupeState extends State<ListGroupe> {
           Membre(nom: 'Sarah murisho judith', sexe: 'F'),
           Membre(nom: 'Eleka Nsele jeannette', sexe: 'F'),
           Membre(nom: 'Tumaini sindayi samuel', sexe: 'M'),
-          Membre(nom: 'Kavira sikiminywa gloria', sexe: 'F'),
+          Membre(nom: 'Kavira sikiminywa gloria',sexe: 'F'),
         ]),
       ),
     );
