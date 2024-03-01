@@ -62,12 +62,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
         centerTitle: true,
         backgroundColor:Color.fromARGB(199, 3, 204, 244),
         actions: [
-          IconButton(
-            onPressed: () {
-              //     showSearch(context: context,delegate: ClientSearchDelegate(),);
-            },
-            icon: const Icon(Icons.search),
-          )
+
         ],
       ),
       body: ListView.builder(
@@ -129,6 +124,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
                                     ],
                                   ),
                                   Text(
+                                  
                                     userdata[index]["dateN"],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w200),

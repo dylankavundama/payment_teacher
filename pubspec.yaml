@@ -49,6 +49,7 @@ dependencies:
   pdf:
   syncfusion_flutter_pdf:
   open_file:
+  loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
   flutter_test:

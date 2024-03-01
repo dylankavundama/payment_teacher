@@ -46,7 +46,7 @@ class _ListGroupeState extends State<ListGroupe> {
   }) {
     return ListTile(
         title: Text('${nom}'),
-        subtitle: Text(''),
+        subtitle: const Text(''),
         trailing: Text('${sexe}'),
         leading: const Icon(
           size: 50,

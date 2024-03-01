@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Positioned(
                   child: ClipPath(
-                    clipper: CustomShapeDetail(),
+                 clipper: CustomShapeDetail(),
                     child: Container(
                       height: 300,
                       width: double.infinity,
@@ -149,17 +149,18 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.grey,
                               ),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_circle_right_outlined,
                                   size: 33,
                                 ),
                                 onPressed: () {
                                   // Navigate back to the login screen
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const MyLogin(),
-                                      ));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const MyLogin(),
+                                    ),
+                                  );
                                 },
                               ),
                             ],
@@ -199,9 +200,9 @@ class _HomePageState extends State<HomePage> {
                                       const PopupMenuItem<String>(
                                           child: Text('Salaire'),
                                           value: 'List_Salaire'),
-                                      const PopupMenuItem<String>(
-                                          child: Text('Rapport'),
-                                          value: 'Rapport'),
+                                      // const PopupMenuItem<String>(
+                                      //     child: Text('Rapport'),
+                                      //     value: 'Rapport'),
                                       const PopupMenuItem<String>(
                                           child: Text('Membre du groupe'),
                                           value: 'ListGroupe'),

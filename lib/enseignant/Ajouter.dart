@@ -41,7 +41,8 @@ class _AddEnseignantState extends State<AddEnseignant> {
 
   Future<void> savadatas(Enseignant enseignant) async {
     try {
-      var url = "https://royalrisingplus.com/payment_teacher/add-enseignant.php";
+      var url =
+          "https://royalrisingplus.com/payment_teacher/add-enseignant.php";
       Uri ulr = Uri.parse(url);
 
       await http.post(ulr, body: {
@@ -78,11 +79,19 @@ class _AddEnseignantState extends State<AddEnseignant> {
                   icon: LineIcons.user,
                   isName: true,
                 ),
-                textField(
-                    textHint: "Matricule",
-                    controller: matricule,
-                    icon: LineIcons.archive,
-                    isNumber: true),
+    
+                const Padding(
+                  padding: EdgeInsets.only(top: 8),
+                ),
+                TextFormField(
+                  controller: matricule,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      hintText: 'Matricule'),
+                ),
+
                 const SizedBox(
                   height: 15,
                 ),
@@ -96,6 +105,7 @@ class _AddEnseignantState extends State<AddEnseignant> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+
                 MaterialButton(
                   minWidth: double.maxFinite,
                   shape: RoundedRectangleBorder(

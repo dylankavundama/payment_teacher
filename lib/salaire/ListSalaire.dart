@@ -249,7 +249,7 @@ class _List_SalaireState extends State<List_Salaire> {
     List<int> bytes = await document.save();
     document.dispose();
 
-    saveAndLaunchFile(bytes, 'rapport.pdf');
+    saveAndLaunchFile(bytes, 'rapportr.pdf');
   }
 
   @override
@@ -342,30 +342,31 @@ class _List_SalaireState extends State<List_Salaire> {
                                         ],
                                       ),
                                       const SizedBox(
-                                        width: 6,
+                                        width: 10,
                                       ),
                                       Text(userdata[index]["montant"]),
                                       Text('\$'),
-                                      SizedBox(
-                                        width: ss * 0.11,
-                                        child: GestureDetector(
-                                            onTap: () {
-                                              delrecord(userdata[index]["id"]);
-                                            },
-                                            child: const Icon(Icons.delete)),
-                                      ),
+                                      // SizedBox(
+                                      //   width: ss * 0.11,
+                                      //   child: GestureDetector(
+                                      //       onTap: () {
+                                      //         delrecord(userdata[index]["id"]);
+                                      //       },
+                                      //       child: const Icon(Icons.delete)),
+                                      // ),
                                       SizedBox(
                                         width: ss * 0.22,
                                         child: GestureDetector(
-                                            onTap: () {
-                                              _createPDF(
-                                                userdata[index]["name"],
-                                                userdata[index]["dateP"],
-                                                userdata[index]["dateP"],
-                                                getrecords(),
-                                              );
-                                            },
-                                            child: const Icon(Icons.print)),
+                                          onTap: () {
+                                            _createPDF(
+                                              userdata[index]["name"],
+                                              userdata[index]["dateP"],
+                                              userdata[index]["dateP"],
+                                              getrecords(),
+                                            );
+                                          },
+                                          child: const Icon(Icons.print),
+                                        ),
                                       ),
                                     ],
                                   ),
