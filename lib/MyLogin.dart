@@ -89,8 +89,8 @@ class _MyLoginState extends State<MyLogin> {
                                       final username = usernameController.text;
                                       final password = passwordController.text;
 
-                                      if (username == 'a' &&
-                                          password == 'a') {
+                                      if (username == 'admin' &&
+                                          password == '11') {
                                         Navigator.pushAndRemoveUntil(
                                           context,
                                           CupertinoPageRoute(

@@ -18,7 +18,8 @@ class _HomePageState extends State<HomePage> {
   List userdata = [];
   Future<void> delrecord(String id) async {
     try {
-      var url = "https://royalrisingplus.com/payment_teacher/delete-enseignant.php";
+      var url =
+          "https://royalrisingplus.com/payment_teacher/delete-enseignant.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-        final ss = MediaQuery.of(context).size.width;
+    final ss = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[50],
       body: SingleChildScrollView(
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: MediaQuery.of(context).padding.top,
               child: Container(
-                color:Color.fromARGB(199, 3, 204, 244),
+                color: Color.fromARGB(199, 3, 204, 244),
               ),
             ),
             Stack(
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       height: 300,
                       width: double.infinity,
-                      color:Color.fromARGB(199, 3, 204, 244),
+                      color: Color.fromARGB(199, 3, 204, 244),
                     ),
                   ),
                 ),
@@ -98,9 +99,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                       
-                              ]),
+                              children: const []),
                           const SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -149,17 +148,20 @@ class _HomePageState extends State<HomePage> {
                                 width: 1,
                                 color: Colors.grey,
                               ),
-                                  IconButton(
-              icon: Icon(Icons.arrow_circle_right_outlined,size: 33,),
-              onPressed: () {
-                // Navigate back to the login screen
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyLogin(),
-                    ));
-              },
-            ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.arrow_circle_right_outlined,
+                                  size: 33,
+                                ),
+                                onPressed: () {
+                                  // Navigate back to the login screen
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const MyLogin(),
+                                      ));
+                                },
+                              ),
                             ],
                           ),
                         ],
@@ -177,21 +179,21 @@ class _HomePageState extends State<HomePage> {
                           height: 70,
                           width: 200,
                           alignment: Alignment.centerLeft,
-                          decoration: const BoxDecoration(
-                              // color: Colors.red,
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/logoWhite.png'))),
+                          child: const Text(
+                            'Pay Now',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
                         ),
                         Column(
                           children: [
                             PopupMenuButton(
-                            
                                 icon: const Icon(LineIcons.verticalEllipsis,
                                     color: Colors.white),
                                 itemBuilder: (_) => <PopupMenuItem<String>>[
                                       const PopupMenuItem(
-
                                           child: Text('Enseignant'),
                                           value: 'List_Enseignant'),
                                       const PopupMenuItem<String>(
@@ -200,9 +202,9 @@ class _HomePageState extends State<HomePage> {
                                       const PopupMenuItem<String>(
                                           child: Text('Rapport'),
                                           value: 'Rapport'),
-                        
                                       const PopupMenuItem<String>(
-                                          child: Text('Membre du groupe'), value: 'ListGroupe'),
+                                          child: Text('Membre du groupe'),
+                                          value: 'ListGroupe'),
                                     ],
                                 onSelected: (value) {
                                   switch (value) {
@@ -222,8 +224,6 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.of(context)
                                           .pushNamed('/ListGroupe');
                                       break;
-                              
-                                
 
                                     default:
                                   }
@@ -239,9 +239,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
- 
             ListView.builder(
-            physics: BouncingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: userdata.length,
               itemBuilder: (context, index) {
@@ -369,7 +368,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }).then((value) {});
         },
-        backgroundColor:Color.fromARGB(199, 3, 204, 244),
+        backgroundColor: Color.fromARGB(199, 3, 204, 244),
         child: const Icon(Icons.add),
       ),
     );

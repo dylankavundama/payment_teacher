@@ -26,7 +26,7 @@ class _LoadingPageState extends State<LoadingPage> {
   void NextPage() {
     Navigator.pushAndRemoveUntil(
       context,
-      CupertinoPageRoute(builder: (context) => HomePage()),
+      CupertinoPageRoute(builder: (context) => MyLogin()),
       (Route<dynamic> route) => false,
     );
   }
