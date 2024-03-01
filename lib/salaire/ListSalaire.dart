@@ -127,23 +127,6 @@ class _List_SalaireState extends State<List_Salaire> {
     header.cells[2].value = 'Montant';
     header.cells[3].value = 'Date';
 
-    // PdfGridRow row = grid.rows.add();
-    // row.cells[0].value = dy[0][0];
-    // row.cells[1].value = dy[0][1];
-    // row.cells[2].value = dy[0][1];
-
-    // for (var i = 0; i < dy.length; i++) {
-    //   var transaction = dy[i];
-
-    //   PdfGridRow row = grid.rows.add();
-    //   row.cells[0].value = dy[0][0];
-    //   row.cells[1].value = dy[0][1];
-    //   row.cells[2].value = dy[0][1];
-    //   // row.cells[i + 1].value = transaction['name'];
-    //   // row.cells[i + 2].value = transaction['montant'];
-    //   // row.cells[i + 3].value = transaction['dateP'];
-    // }
-
     for (var i = 0; i < records.length; i++) {
       var transaction = records[i];
 

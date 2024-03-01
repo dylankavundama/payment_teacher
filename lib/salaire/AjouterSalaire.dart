@@ -60,7 +60,8 @@ class _AddSalaireState extends State<AddSalaire> {
 
   Future<void> savadatas(Salaire Salaire) async {
     try {
-      var url = "https://royalrisingplus.com/payment_teacher/salaire/add-salaire.php";
+      var url =
+          "https://royalrisingplus.com/payment_teacher/salaire/add-salaire.php";
       Uri ulr = Uri.parse(url);
 
       await http.post(ulr,
