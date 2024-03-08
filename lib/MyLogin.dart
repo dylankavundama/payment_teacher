@@ -105,8 +105,7 @@ class _MyLoginState extends State<MyLogin> {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           const SnackBar(
-                                            content: Text(
-                                                'erreur'),
+                                            content: Text('erreur'),
                                           ),
                                         );
                                       }

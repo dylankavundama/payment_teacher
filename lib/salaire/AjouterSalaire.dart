@@ -1,13 +1,10 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
 import 'package:payment_teacher/Homepage.dart';
 import 'dart:core';
-import 'ListSalaire.dart';
 
 class AddSalaire extends StatefulWidget {
   const AddSalaire({super.key});
@@ -90,12 +87,7 @@ class _AddSalaireState extends State<AddSalaire> {
               children: <Widget>[
                 const Icon(Icons.attach_money_sharp,
                     color: Colors.blue, size: 80),
-                // textField(
-                //   textHint: "Nom ",
-                //   controller: nom,
-                //   icon: LineIcons.user,
-                //   isName: true,
-                // ),
+
                 DropdownButton(
                   hint: Text("Selectionner"),
                   items: dataens.map((list) {
