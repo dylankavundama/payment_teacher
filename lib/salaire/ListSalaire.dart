@@ -142,7 +142,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                     ],
                                   ),
                                   Text(
-                                    userdata[index]["nom"],
+                                    userdata[index]["tel"],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w200),
                                   ),
@@ -164,7 +164,8 @@ class _List_SalaireState extends State<List_Salaire> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      Text(userdata[index]["nom"]),
+                                      Text(userdata[index]["categorie_id"]),
+                                         Text(userdata[index]["site"]),
                                     
                                     ],
                                   ),
