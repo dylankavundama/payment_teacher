@@ -57,7 +57,7 @@ class _List_SalaireState extends State<List_Salaire> {
     getrecord();
     getrecords();
     print(userdatas);
-    //print(getrecord);
+
     super.initState();
   }
 
@@ -72,7 +72,7 @@ class _List_SalaireState extends State<List_Salaire> {
         List<dynamic> userdatas = jsonDecode(response.body);
         return userdatas; // Return the list
       } else {
-        // Handle non-200 status code
+ 
         print("Error: ${response.statusCode}");
         return []; // Return an empty list on error
       }
