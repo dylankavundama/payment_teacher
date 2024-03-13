@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
 
 import 'package:payment_teacher/salaire/AjouterSalaire.dart';
+import 'package:payment_teacher/salaire/UpdateSalaire.dart';
 
 import 'package:flutter/services.dart' show Uint8List, rootBundle;
 
@@ -22,7 +23,7 @@ class _List_SalaireState extends State<List_Salaire> {
   Future<void> delrecord(String id) async {
     try {
       var url =
-          "https://royalrisingplus.com/payment_teacher/salaire/delete-Salaire.php";
+          "http://localhost/goma/goma.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -57,7 +58,7 @@ class _List_SalaireState extends State<List_Salaire> {
     getrecord();
     getrecords();
     print(userdatas);
-
+    //print(getrecord);
     super.initState();
   }
 
@@ -72,7 +73,7 @@ class _List_SalaireState extends State<List_Salaire> {
         List<dynamic> userdatas = jsonDecode(response.body);
         return userdatas; // Return the list
       } else {
- 
+        // Handle non-200 status code
         print("Error: ${response.statusCode}");
         return []; // Return an empty list on error
       }
@@ -96,80 +97,84 @@ class _List_SalaireState extends State<List_Salaire> {
         itemBuilder: (context, index) {
           return Card(
             margin: const EdgeInsets.all(10),
-            child: Container(
-              height: 100,
-              width: double.infinity,
-              padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
-              child: Card(
-                elevation: 1,
-                child: Container(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
-                  height: 100,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Colors.grey)),
-                            child: const Icon(LineIcons.userCircle, size: 35),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 1),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      userdata[index]["nom"],
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  userdata[index]["detail"],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w200),
-                                ),
-                                const SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: const [
-                                        Icon(LineIcons.discourse,
-                                            color: Colors.blue, size: 15),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          "site : ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w200),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(userdata[index]["detail"]),
-                                  ],
-                                ),
-                              ],
+            child: GestureDetector(
+
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
+                child: Card(
+                  elevation: 1,
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
+                    height: 100,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.grey)),
+                              child: const Icon(LineIcons.userCircle, size: 35),
                             ),
-                          )
-                        ],
-                      ),
-                    ],
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 1),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        userdata[index]["nom"],
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    userdata[index]["nom"],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w200),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    children: [
+                                      Row(
+                                        children: const [
+                                          Icon(LineIcons.discourse,
+                                              color: Colors.blue, size: 15),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            "nom : ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w200),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(userdata[index]["nom"]),
+                                    
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
