@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:payment_teacher/Homepage.dart';
-import 'package:payment_teacher/MyLogin.dart';
-import 'package:payment_teacher/enseignant/ListEnseignant.dart';
-import 'package:payment_teacher/groupeTP.dart';
-import 'package:payment_teacher/loading.dart';
+
 import 'package:payment_teacher/salaire/ListSalaire.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,16 +37,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(199, 3, 204, 244),
         ),
       ),
-      home: isOpened ? HomePage() : const List_Salaire(),
+      home: isOpened ? List_Salaire() : const List_Salaire(),
       routes: {
-
-        '/home': (context) => const HomePage(),
- 
-        '/List_Enseignant': (context) => const List_Enseignant(),
+        '/home': (context) => const List_Salaire(),
+        '/List_Enseignant': (context) => List_Salaire(),
         '/List_Salaire': (context) => const List_Salaire(),
-       // '/Rapport': (context) => const Rapport(),
-        '/ListGroupe': (context) => const ListGroupe(),
-
       },
     );
   }

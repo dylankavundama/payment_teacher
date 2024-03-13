@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
-import 'package:payment_teacher/Homepage.dart';
+
 import 'dart:core';
+
+import 'package:payment_teacher/salaire/ListSalaire.dart';
 
 class AddSalaire extends StatefulWidget {
   const AddSalaire({super.key});
@@ -14,8 +16,8 @@ class AddSalaire extends StatefulWidget {
 
 class _AddSalaireState extends State<AddSalaire> {
   // TextEditingController nom = TextEditingController();
-  TextEditingController montant = TextEditingController();
-  TextEditingController dateP = TextEditingController();
+  TextEditingController detail = TextEditingController();
+  TextEditingController site = TextEditingController();
   @override
   void initState() {
     getrecord();
@@ -62,7 +64,7 @@ class _AddSalaireState extends State<AddSalaire> {
       Uri ulr = Uri.parse(url);
 
       await http.post(ulr,
-          body: {"nom": idenseu, "montant": montant.text, "dateP": dateP.text});
+          body: {"nom": idenseu, "detail": detail.text, "site": site.text});
       showToast(msg: "Succes!");
     } catch (e) {
       showToast(msg: 'Erreur survenue');
@@ -87,7 +89,6 @@ class _AddSalaireState extends State<AddSalaire> {
               children: <Widget>[
                 const Icon(Icons.attach_money_sharp,
                     color: Colors.blue, size: 80),
-
                 DropdownButton(
                   hint: Text("Selectionner"),
                   items: dataens.map((list) {
@@ -105,8 +106,8 @@ class _AddSalaireState extends State<AddSalaire> {
                   },
                 ),
                 textField(
-                    textHint: "montant",
-                    controller: montant,
+                    textHint: "detail",
+                    controller: detail,
                     icon: LineIcons.archive,
                     suffixIcon: LineIcons.dollarSign,
                     isNumber: true),
@@ -114,7 +115,7 @@ class _AddSalaireState extends State<AddSalaire> {
                   height: 15,
                 ),
                 TextField(
-                  controller: dateP,
+                  controller: site,
                   readOnly: true,
                   onTap: () => _selectDate(context),
                   decoration: const InputDecoration(
@@ -131,11 +132,11 @@ class _AddSalaireState extends State<AddSalaire> {
                   onPressed: () {
                     if (idenseu.isEmpty) {
                       showToast(msg: "y'a une case vide");
-                    } else if (dateP.text.isEmpty) {
+                    } else if (site.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
-                    } else if (montant.text.isEmpty &&
+                    } else if (detail.text.isEmpty &&
                         idenseu.isEmpty &&
-                        dateP.text.isEmpty) {
+                        site.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
                     } else {
                       setState(() {
@@ -143,11 +144,11 @@ class _AddSalaireState extends State<AddSalaire> {
                       });
                       savadatas(Salaire(
                         nom: idenseu.trim(),
-                        montant: montant.text.trim(),
-                        dateP: dateP.text.trim(),
+                        detail: detail.text.trim(),
+                        site: site.text.trim(),
                       )).then((value) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePage()));
+                            builder: (context) => List_Salaire()));
                       }).whenComplete(() {
                         setState(() {
                           _isLoading = false;
@@ -184,7 +185,7 @@ class _AddSalaireState extends State<AddSalaire> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        dateP.text = picked.toString().substring(0, 10);
+        site.text = picked.toString().substring(0, 10);
       });
     }
   }
@@ -250,10 +251,10 @@ Widget textField(
 class Salaire {
   int? code;
   String? nom;
-  String? montant;
-  String? dateP;
+  String? detail;
+  String? site;
 
-  Salaire({this.code, this.nom, this.montant, this.dateP});
+  Salaire({this.code, this.nom, this.detail, this.site});
 
   factory Salaire.fromJson(Map<String, dynamic> json) =>
       _$SalaireFromJson(json);
@@ -264,12 +265,12 @@ Salaire _$SalaireFromJson(Map<String, dynamic> json) {
   return Salaire(
       code: json['id'] as int,
       nom: json['nom'] as String,
-      dateP: json['dateP'] as String,
-      montant: json['montant'] as String);
+      site: json['site'] as String,
+      detail: json['detail'] as String);
 }
 
 Map<String, dynamic> _$SalaireToJson(Salaire instance) => <String, dynamic>{
       'nom': instance.nom,
-      'montant': instance.montant,
-      'dateP': instance.dateP
+      'detail': instance.detail,
+      'site': instance.site
     };
