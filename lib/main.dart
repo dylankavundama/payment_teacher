@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(199, 3, 204, 244),
         ),
       ),
-      home: isOpened ? LoadingPage() : const MyLogin(),
+      home: isOpened ? HomePage() : const List_Salaire(),
       routes: {
 
         '/home': (context) => const HomePage(),

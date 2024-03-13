@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:payment_teacher/MyLogin.dart';
-import 'package:payment_teacher/enseignant/Ajouter.dart';
-import 'package:payment_teacher/enseignant/UpdateEnseignant.dart';
+
+
 
 import 'package:http/http.dart' as http;
+import 'package:payment_teacher/salaire/ListSalaire.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const MyLogin(),
+                                      builder: (context) => const List_Salaire(),
                                     ),
                                   );
                                 },
@@ -248,16 +248,6 @@ class _HomePageState extends State<HomePage> {
                 return Card(
                   margin: const EdgeInsets.all(10),
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Update_Enseignant(
-                                  userdata[index]["nom"],
-                                  userdata[index]["matricule"],
-                                  userdata[index]["dateN"],
-                                  userdata[index]["id"])));
-                    },
                     child: Container(
                       height: 100,
                       width: double.infinity,
@@ -359,19 +349,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const Center(
-                  child: AddEnseignant(),
-                );
-              }).then((value) {});
-        },
-        backgroundColor: Color.fromARGB(199, 3, 204, 244),
-        child: const Icon(Icons.add),
-      ),
+
     );
   }
 }
