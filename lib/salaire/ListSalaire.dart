@@ -38,7 +38,7 @@ class _List_SalaireState extends State<List_Salaire> {
   }
 
   Future<void> getrecord() async {
-    var url = "https://royalrisingplus.com/payment_teacher/readvie.php";
+    var url = "http://localhost/goma/goma.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -64,7 +64,7 @@ class _List_SalaireState extends State<List_Salaire> {
   List userdatas = [];
 
   Future<List<dynamic>> getrecords() async {
-    var url = "https://royalrisingplus.com/payment_teacher/readvie.php";
+    var url = "http://localhost/goma/goma.php";
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -134,12 +134,12 @@ class _List_SalaireState extends State<List_Salaire> {
                                 Row(
                                   children: [
                                     Text(
-                                      userdata[index]["name"],
+                                      userdata[index]["nom"],
                                     ),
                                   ],
                                 ),
                                 Text(
-                                  userdata[index]["dateP"],
+                                  userdata[index]["detail"],
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w200),
                                 ),
@@ -152,7 +152,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                             color: Colors.blue, size: 15),
                                         SizedBox(width: 5),
                                         Text(
-                                          "montant : ",
+                                          "site : ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w200),
                                         ),
@@ -161,7 +161,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    Text(userdata[index]["montant"]),
+                                    Text(userdata[index]["detail"]),
                                   ],
                                 ),
                               ],
