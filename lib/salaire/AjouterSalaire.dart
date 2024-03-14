@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +17,8 @@ class AddSalaire extends StatefulWidget {
 
 class _AddSalaireState extends State<AddSalaire> {
   // TextEditingController nom = TextEditingController();
+  TextEditingController nom = TextEditingController();
+  TextEditingController tel = TextEditingController();
   TextEditingController detail = TextEditingController();
   TextEditingController site = TextEditingController();
   @override
@@ -46,7 +49,7 @@ class _AddSalaireState extends State<AddSalaire> {
 
   List dataens = [];
   Future<void> getrecord() async {
-    var url = "https://royalrisingplus.com/payment_teacher/read-enseignant.php";
+    var url = "http://192.168.91.195/payment_teacher/read-enseignant.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -59,13 +62,21 @@ class _AddSalaireState extends State<AddSalaire> {
 
   Future<void> savadatas(Salaire Salaire) async {
     try {
-      var url =
-          "https://royalrisingplus.com/payment_teacher/salaire/add-salaire.php";
+      var url = "http://192.168.91.195/payment_teacher/salaire/add-salaire.php";
       Uri ulr = Uri.parse(url);
 
-      await http.post(ulr,
-          body: {"nom": idenseu, "detail": detail.text, "site": site.text});
-      showToast(msg: "Succes!");
+      var reponse = await http.post(ulr, body: {
+        "nom": nom.text,
+        "cat": idenseu,
+        "site": site.text,
+        "det": detail.text,
+        "tel": tel.text
+      });
+      if (reponse.statusCode == 200) {
+        showToast(msg: "Succes!");
+      } else {
+        showToast(msg: "Probleme d'insertion!");
+      }
     } catch (e) {
       showToast(msg: 'Erreur survenue');
     }
@@ -76,7 +87,7 @@ class _AddSalaireState extends State<AddSalaire> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: 550,
+        height: 800,
         padding: EdgeInsets.all(20.0),
         child: Material(
           clipBehavior: Clip.antiAlias,
@@ -90,7 +101,7 @@ class _AddSalaireState extends State<AddSalaire> {
                 const Icon(Icons.attach_money_sharp,
                     color: Colors.blue, size: 80),
                 DropdownButton(
-                  hint: Text("Selectionner"),
+                  hint: const Text("Selectionner"),
                   items: dataens.map((list) {
                     return DropdownMenuItem(
                       value: list["id"],
@@ -106,11 +117,23 @@ class _AddSalaireState extends State<AddSalaire> {
                   },
                 ),
                 textField(
+                    textHint: "nom",
+                    controller: nom,
+                    icon: LineIcons.archive,
+                    suffixIcon: LineIcons.dollarSign,
+                    isNumber: false),
+                textField(
+                    textHint: "telephone",
+                    controller: tel,
+                    icon: LineIcons.archive,
+                    suffixIcon: LineIcons.dollarSign,
+                    isNumber: true),
+                textField(
                     textHint: "detail",
                     controller: detail,
                     icon: LineIcons.archive,
                     suffixIcon: LineIcons.dollarSign,
-                    isNumber: true),
+                    isNumber: false),
                 const SizedBox(
                   height: 15,
                 ),

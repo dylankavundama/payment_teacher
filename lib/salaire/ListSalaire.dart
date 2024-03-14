@@ -22,8 +22,7 @@ class _List_SalaireState extends State<List_Salaire> {
   List userdata = [];
   Future<void> delrecord(String id) async {
     try {
-      var url =
-          "http://localhost/goma/goma.php";
+      var url = "http://localhost/goma/goma.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -39,7 +38,7 @@ class _List_SalaireState extends State<List_Salaire> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://localhost/goma/goma.php";
+    var url = "http://192.168.91.195/goma/goma.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -56,7 +55,7 @@ class _List_SalaireState extends State<List_Salaire> {
   void initState() {
     // TODO: implement initState
     getrecord();
-    getrecords();
+    // getrecordssss();
     print(userdatas);
     //print(getrecord);
     super.initState();
@@ -64,13 +63,13 @@ class _List_SalaireState extends State<List_Salaire> {
 
   List userdatas = [];
 
-  Future<List<dynamic>> getrecords() async {
-    var url = "http://localhost/goma/goma.php";
+  Future<List<dynamic>> getrecordssss() async {
+    var url = "http://192.168.91.195/goma/goma.php";
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         // Parse the JSON response
-        List<dynamic> userdatas = jsonDecode(response.body);
+        userdatas = jsonDecode(response.body);
         return userdatas; // Return the list
       } else {
         // Handle non-200 status code
@@ -78,7 +77,7 @@ class _List_SalaireState extends State<List_Salaire> {
         return []; // Return an empty list on error
       }
     } catch (e) {
-      print(e);
+      print("Error de sssss $e");
       return []; // Return an empty list on error
     }
   }
@@ -98,7 +97,6 @@ class _List_SalaireState extends State<List_Salaire> {
           return Card(
             margin: const EdgeInsets.all(10),
             child: GestureDetector(
-
               child: Container(
                 height: 100,
                 width: double.infinity,
@@ -165,8 +163,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                         width: 10,
                                       ),
                                       Text(userdata[index]["categorie_id"]),
-                                         Text(userdata[index]["site"]),
-                                    
+                                      Text(userdata[index]["site"]),
                                     ],
                                   ),
                                 ],
