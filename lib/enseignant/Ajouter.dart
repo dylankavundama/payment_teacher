@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,26 +5,22 @@ import 'package:http/http.dart' as http;
 import 'package:line_icons/line_icons.dart';
 import 'package:payment_teacher/Homepage.dart';
 import 'dart:core';
-import 'ListSalaire.dart';
+import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
-class AddSalaire extends StatefulWidget {
-  const AddSalaire({super.key});
+class AddEnseignant extends StatefulWidget {
+  const AddEnseignant({super.key});
   @override
-  State<AddSalaire> createState() => _AddSalaireState();
+  State<AddEnseignant> createState() => _AddEnseignantState();
 }
 
-class _AddSalaireState extends State<AddSalaire> {
-  // TextEditingController nom = TextEditingController();
-  TextEditingController montant = TextEditingController();
-  TextEditingController dateP = TextEditingController();
+class _AddEnseignantState extends State<AddEnseignant> {
+  TextEditingController nom = TextEditingController();
+  TextEditingController matricule = TextEditingController();
+  TextEditingController dateN = TextEditingController();
   @override
   void initState() {
-    getrecord();
     super.initState();
   }
-
-  late String idenseu;
-  var selectens;
 
   bool _isNumeric(String value) {
     try {
@@ -45,27 +39,17 @@ class _AddSalaireState extends State<AddSalaire> {
     return Fluttertoast.showToast(msg: msg);
   }
 
-  List dataens = [];
-  Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/read-enseignant.php";
+  Future<void> savadatas(Enseignant enseignant) async {
     try {
-      var response = await http.get(Uri.parse(url));
-      setState(() {
-        dataens = jsonDecode(response.body);
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> savadatas(Salaire Salaire) async {
-    try {
-      var url = "http://192.168.1.190/payment_teacher/salaire/add-salaire.php";
+      var url = "http://192.168.1.190/payment_teacher/add-enseignant.php";
       Uri ulr = Uri.parse(url);
 
-      await http.post(ulr,
-          body: {"nom": idenseu, "montant": montant.text, "dateP": dateP.text});
-      showToast(msg: "Succes!");
+      await http.post(ulr, body: {
+        "nom": nom.text,
+        "matricule": matricule.text,
+        "dateN": dateN.text
+      });
+      showToast(msg: "Informations saved");
     } catch (e) {
       showToast(msg: 'Erreur survenue');
     }
@@ -87,41 +71,23 @@ class _AddSalaireState extends State<AddSalaire> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Icon(Icons.attach_money_sharp,
-                    color: Colors.blue, size: 80),
-                // textField(
-                //   textHint: "Nom ",
-                //   controller: nom,
-                //   icon: LineIcons.user,
-                //   isName: true,
-                // ),
-                DropdownButton(
-                  hint: Text("ensi"),
-                  items: dataens.map((list) {
-                    return DropdownMenuItem(
-                      value: list["id"],
-                      child: Text(list["nom"]),
-                    );
-                  }).toList(),
-                  value: selectens,
-                  onChanged: (value) {
-                    selectens = value;
-                    idenseu = selectens;
-                    print("la vealuur: " + selectens);
-                    setState(() {});
-                  },
+                const Icon(LineIcons.userCircle, color: Colors.blue, size: 80),
+                textField(
+                  textHint: "Nom ",
+                  controller: nom,
+                  icon: LineIcons.user,
+                  isName: true,
                 ),
                 textField(
-                    textHint: "montant",
-                    controller: montant,
+                    textHint: "Matricule",
+                    controller: matricule,
                     icon: LineIcons.archive,
-                    suffixIcon: LineIcons.dollarSign,
                     isNumber: true),
                 const SizedBox(
                   height: 15,
                 ),
                 TextField(
-                  controller: dateP,
+                  controller: dateN,
                   readOnly: true,
                   onTap: () => _selectDate(context),
                   decoration: const InputDecoration(
@@ -136,25 +102,33 @@ class _AddSalaireState extends State<AddSalaire> {
                       borderRadius: BorderRadius.circular(10.0)),
                   color: Colors.blue[800],
                   onPressed: () {
-                    if (idenseu.isEmpty) {
+                    if (nom.text.isEmpty) {
                       showToast(msg: "y'a une case vide");
-                    } else if (dateP.text.isEmpty) {
+                    } else if (dateN.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
-                    } else if (montant.text.isEmpty &&
-                        idenseu.isEmpty &&
-                        dateP.text.isEmpty) {
+                    } else if (matricule.text.isEmpty &&
+                        nom.text.isEmpty &&
+                        dateN.text.isEmpty) {
                       showToast(msg: "Y'a une case vide");
+                    } else if (matricule.text.length != 8) {
+                      showToast(
+                          msg:
+                              "Le numero de matricule doit avoir 8 caractères");
                     } else {
                       setState(() {
                         _isLoading = true;
                       });
-                      savadatas(Salaire(
-                        nom: idenseu.trim(),
-                        montant: montant.text.trim(),
-                        dateP: dateP.text.trim(),
+                      savadatas(Enseignant(
+                        nom: nom.text.trim(),
+                        matricule: matricule.text.trim(),
+                        dateN: dateN.text.trim(),
                       )).then((value) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePage()));
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const HomePage()),
+                          (Route<dynamic> route) => false,
+                        );
                       }).whenComplete(() {
                         setState(() {
                           _isLoading = false;
@@ -191,7 +165,7 @@ class _AddSalaireState extends State<AddSalaire> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        dateP.text = picked.toString().substring(0, 10);
+        dateN.text = picked.toString().substring(0, 10);
       });
     }
   }
@@ -237,7 +211,6 @@ Widget textField(
             enabled: enabled ?? true,
             controller: controller,
             decoration: InputDecoration(
-              hintText: textHint,
               border: InputBorder.none,
               prefixIcon: Icon(icon),
               suffixIcon: isName != null
@@ -254,29 +227,30 @@ Widget textField(
   );
 }
 
-class Salaire {
+class Enseignant {
   int? code;
   String? nom;
-  String? montant;
-  String? dateP;
+  String? matricule;
+  String? dateN;
 
-  Salaire({this.code, this.nom, this.montant, this.dateP});
+  Enseignant({this.code, this.nom, this.matricule, this.dateN});
 
-  factory Salaire.fromJson(Map<String, dynamic> json) =>
-      _$SalaireFromJson(json);
-  Map<String, dynamic> toJson() => _$SalaireToJson(this);
+  factory Enseignant.fromJson(Map<String, dynamic> json) =>
+      _$EnseignantFromJson(json);
+  Map<String, dynamic> toJson() => _$EnseignantToJson(this);
 }
 
-Salaire _$SalaireFromJson(Map<String, dynamic> json) {
-  return Salaire(
+Enseignant _$EnseignantFromJson(Map<String, dynamic> json) {
+  return Enseignant(
       code: json['id'] as int,
       nom: json['nom'] as String,
-      dateP: json['dateP'] as String,
-      montant: json['montant'] as String);
+      dateN: json['dateN'] as String,
+      matricule: json['matricule'] as String);
 }
 
-Map<String, dynamic> _$SalaireToJson(Salaire instance) => <String, dynamic>{
+Map<String, dynamic> _$EnseignantToJson(Enseignant instance) =>
+    <String, dynamic>{
       'nom': instance.nom,
-      'montant': instance.montant,
-      'dateP': instance.dateP
+      'matricule': instance.matricule,
+      'dateN': instance.dateN
     };

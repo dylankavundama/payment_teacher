@@ -2,36 +2,36 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:payment_teacher/salaire/ListSalaire.dart';
-
+import 'package:payment_teacher/Homepage.dart';
+import 'package:payment_teacher/enseignant/ListEnseignant.dart';
 
 // ignore: must_be_immutable, camel_case_types
-class UpdateSalaire extends StatefulWidget {
+class Update_Enseignant extends StatefulWidget {
   String id;
   String nom;
-  String montant;
-  String dateP;
-  UpdateSalaire(this.nom, this.montant, this.dateP, this.id, {super.key});
+  String matricule;
+  String dateN;
+  Update_Enseignant(this.nom, this.matricule, this.dateN, this.id, {super.key});
 
   @override
-  State<UpdateSalaire> createState() => _UpdateSalaireState();
+  State<Update_Enseignant> createState() => _Update_EnseignantState();
 }
 
 // ignore: camel_case_types
-class _UpdateSalaireState extends State<UpdateSalaire> {
+class _Update_EnseignantState extends State<Update_Enseignant> {
   String mat = "";
   TextEditingController txtnom = TextEditingController();
-  TextEditingController montant = TextEditingController();
-  TextEditingController dateP = TextEditingController();
+  TextEditingController matricule = TextEditingController();
+  TextEditingController dateN = TextEditingController();
 
   Future<void> update() async {
     try {
-      var url = "http://192.168.1.190/payment_teacher/salaire/update_salaire.php";
+      var url = "http://192.168.1.190/payment_teacher/update.php";
 
       var res = await http.post(Uri.parse(url), body: {
         "nom": txtnom.text,
-        "montant": montant.text,
-        "dateP": dateP.text,
+        "matricule": matricule.text,
+        "dateN": dateN.text,
         "id": widget.id
       });
       debugPrint(widget.id);
@@ -49,8 +49,8 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
 
   @override
   void initState() {
-    montant.text = widget.montant;
-    dateP.text = widget.dateP;
+    matricule.text = widget.matricule;
+    dateN.text = widget.dateN;
     txtnom.text = widget.nom;
     mat = widget.id;
     super.initState();
@@ -72,15 +72,15 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
               decoration: const InputDecoration(hintText: "", labelText: "Nom"),
             ),
             TextField(
-              controller: montant,
+              controller: matricule,
               decoration:
-                  const InputDecoration(hintText: "", labelText: "montant"),
+                  const InputDecoration(hintText: "", labelText: "Matricule"),
             ),
             TextField(
               onTap: () => _selectDate(context),
-              controller: dateP,
+              controller: dateN,
               decoration: const InputDecoration(
-                  hintText: "Votre dateP", labelText: "dateP"),
+                  hintText: "Votre dateN", labelText: "dateN"),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16),
@@ -91,12 +91,7 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
                 color: const Color.fromARGB(199, 3, 204, 244),
                 onPressed: () {
                   update();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => List_Salaire()),
-                    (Route<dynamic> route) => false,
-                  );
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: const Text("Confirmer"),
               ),
@@ -116,7 +111,7 @@ class _UpdateSalaireState extends State<UpdateSalaire> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        dateP.text = picked.toString().substring(0, 10);
+        dateN.text = picked.toString().substring(0, 10);
       });
     }
   }

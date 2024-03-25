@@ -1,24 +1,25 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:payment_teacher/enseignant/Ajouter.dart';
+
 import 'package:line_icons/line_icons.dart';
-import 'package:payment_teacher/salaire/AjouterSalaire.dart';
-import 'package:payment_teacher/salaire/UpdateSalaire.dart';
+import 'package:payment_teacher/enseignant/UpdateEnseignant.dart';
 
 // ignore: camel_case_types
-class List_Salaire extends StatefulWidget {
-  const List_Salaire({super.key});
+class List_Enseignant extends StatefulWidget {
+  const List_Enseignant({super.key});
   @override
-  State<List_Salaire> createState() => _List_SalaireState();
+  State<List_Enseignant> createState() => _List_EnseignantState();
 }
 
 // ignore: camel_case_types
-class _List_SalaireState extends State<List_Salaire> {
+class _List_EnseignantState extends State<List_Enseignant> {
   List userdata = [];
   Future<void> delrecord(String id) async {
     try {
-      var url =
-          "http://192.168.1.190/payment_teacher/salaire/delete-Salaire.php";
+      var url = "http://192.168.1.190/payment_teacher/delete-enseignant.php";
       var result = await http.post(Uri.parse(url), body: {"id": id});
       var reponse = jsonDecode(result.body);
       if (reponse["Success"] == "True") {
@@ -34,7 +35,7 @@ class _List_SalaireState extends State<List_Salaire> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/readvie.php";
+    var url = "http://192.168.1.190/payment_teacher/read-enseignant.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {
@@ -57,9 +58,17 @@ class _List_SalaireState extends State<List_Salaire> {
     final ss = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Salaire"),
+        title: const Text("Enseignant"),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(199, 3, 204, 244),
+        backgroundColor:Color.fromARGB(199, 3, 204, 244),
+        actions: [
+          IconButton(
+            onPressed: () {
+              //     showSearch(context: context,delegate: ClientSearchDelegate(),);
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: userdata.length,
@@ -69,15 +78,13 @@ class _List_SalaireState extends State<List_Salaire> {
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UpdateSalaire(
-                        userdata[index]["nom"],
-                        userdata[index]["montant"],
-                        userdata[index]["dateP"],
-                        userdata[index]["id"]),
-                  ),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Update_Enseignant(
+                            userdata[index]["nom"],
+                            userdata[index]["matricule"],
+                            userdata[index]["dateN"],
+                            userdata[index]["id"])));
               },
               child: Container(
                 height: 100,
@@ -117,12 +124,12 @@ class _List_SalaireState extends State<List_Salaire> {
                                   Row(
                                     children: [
                                       Text(
-                                        userdata[index]["name"],
+                                        userdata[index]["nom"],
                                       ),
                                     ],
                                   ),
                                   Text(
-                                    userdata[index]["dateP"],
+                                    userdata[index]["dateN"],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w200),
                                   ),
@@ -135,7 +142,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                               color: Colors.blue, size: 15),
                                           SizedBox(width: 5),
                                           Text(
-                                            "montant : ",
+                                            "Matricule : ",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w200),
                                           ),
@@ -144,8 +151,7 @@ class _List_SalaireState extends State<List_Salaire> {
                                       const SizedBox(
                                         width: 6,
                                       ),
-                                      Text(userdata[index]["montant"]),
-                                      Text('\$'),
+                                      Text(userdata[index]["matricule"]),
                                       SizedBox(
                                         width: ss * 0.22,
                                         child: GestureDetector(
@@ -176,11 +182,11 @@ class _List_SalaireState extends State<List_Salaire> {
               context: context,
               builder: (context) {
                 return const Center(
-                  child: AddSalaire(),
+                  child: AddEnseignant(),
                 );
               }).then((value) {});
         },
-        backgroundColor: Color.fromARGB(199, 3, 204, 244),
+        backgroundColor:Color.fromARGB(199, 3, 204, 244),
         child: const Icon(Icons.add),
       ),
     );
