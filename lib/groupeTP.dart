@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-
 class ListGroupe extends StatefulWidget {
   const ListGroupe({super.key});
-
   @override
   State<ListGroupe> createState() => _ListGroupeState();
 }
-
 class _ListGroupeState extends State<ListGroupe> {
   @override
   Widget build(BuildContext context) {
