@@ -8,8 +8,10 @@ class Constants {
   static const cartIcon = 'assets/vectors/cart.svg';
   static const notificationsIcon = 'assets/vectors/notifications.svg';
   static const settingsIcon = 'assets/vectors/settings.svg';
+
   static const cat = 'assets/vectors/category.svg';
     static const pro = 'assets/vectors/produit.svg';
+
   static const favFilledIcon = 'assets/vectors/fav_filled.svg';
   static const favOutlinedIcon = 'assets/vectors/fav_outlined.svg';
   static const backArrowIcon = 'assets/vectors/back_arrow.svg';
