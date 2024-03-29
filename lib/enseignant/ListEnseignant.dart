@@ -35,7 +35,7 @@ class _List_EnseignantState extends State<List_Enseignant> {
   }
 
   Future<void> getrecord() async {
-    var url = "http://192.168.1.190/payment_teacher/read-enseignant.php";
+    var url = "http://192.168.1.67/payment_teacher/read-enseignant.php";
     try {
       var response = await http.get(Uri.parse(url));
       setState(() {

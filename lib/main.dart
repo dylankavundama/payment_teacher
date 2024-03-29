@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(199, 3, 204, 244),
         ),
       ),
-      home: isOpened ? LoadingPage() : const MyLogin(),
+      home: isOpened ? LoadingPage() : const HomePage(),
       routes: {
         // '/splash': (context) => SplashScreen(),
         // '/login': (context) => const LoginScreen(),
