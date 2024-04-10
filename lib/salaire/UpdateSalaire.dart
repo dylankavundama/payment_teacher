@@ -16,7 +16,6 @@ class UpdateSalaire extends StatefulWidget {
   @override
   State<UpdateSalaire> createState() => _UpdateSalaireState();
 }
-
 // ignore: camel_case_types
 class _UpdateSalaireState extends State<UpdateSalaire> {
   String mat = "";

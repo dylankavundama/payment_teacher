@@ -231,7 +231,6 @@ class Enseignant {
   int? code;
   String? nom;
   String? matricule;
-  String? dateN;
 
   Enseignant({this.code, this.nom, this.matricule, this.dateN});
 
@@ -243,14 +242,12 @@ class Enseignant {
 Enseignant _$EnseignantFromJson(Map<String, dynamic> json) {
   return Enseignant(
       code: json['id'] as int,
-      nom: json['nom'] as String,
-      dateN: json['dateN'] as String,
-      matricule: json['matricule'] as String);
+      nom: json['entreprise_id '] as String,
+      matricule: json['commentaire'] as String);
 }
 
 Map<String, dynamic> _$EnseignantToJson(Enseignant instance) =>
     <String, dynamic>{
-      'nom': instance.nom,
-      'matricule': instance.matricule,
-      'dateN': instance.dateN
+      'entreprise_id': instance.nom,
+      'commentaire': instance.matricule,
     };

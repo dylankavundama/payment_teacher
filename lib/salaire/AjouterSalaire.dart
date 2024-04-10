@@ -274,7 +274,6 @@ Salaire _$SalaireFromJson(Map<String, dynamic> json) {
       dateP: json['dateP'] as String,
       montant: json['montant'] as String);
 }
-
 Map<String, dynamic> _$SalaireToJson(Salaire instance) => <String, dynamic>{
       'nom': instance.nom,
       'montant': instance.montant,
